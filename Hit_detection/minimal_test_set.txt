@@ -1,0 +1,46 @@
+Minimal test set for HitDetection.java
+
+AUTHORS:
+- Ivan Sergeevich Mishin (2076209)
+- Nikita Vladimirovich Gamolin (2091402)
+
+TEST CASE 1
+motivation  : Example run, test a point in first circle
+input       : 0 0 3.1 0.25 0.13 1 2.1 2.03
+output      : The point hits the first circle
+
+
+TEST CASE 2
+motivation  : Test to check whether negative radius for first circle handled correctly
+input       : 1 2 -3 0.5 0.7 1 3 4.7
+output      : input error
+
+
+TEST CASE 3
+motivation  : Test to check whether negative radius for second circle handled correctly
+input       : 1.5 3.5 4 8.5 3 -5 3.2 6.1
+output      : input error
+
+
+TEST CASE 4
+motivation  : Test how hitting neither of circles is handled
+input       : -10 -8.33 3 15 12.56 4 -5 6.1
+output      : The point does not hit either circle
+
+
+TEST CASE 5
+motivation  : Test how hitting only second circle is handled
+input       : 5.6 4.7 3 -10.657 -2.56 2.4 -9.76 -1.9
+output      : The point hits the second circle
+
+
+TEST CASE 6
+motivation  : Test how hitting both circles is handled
+input       : 2.34 3.56 5 1.78 3.75 3.56 2 3
+output      : The point hits both circles
+
+
+TEST CASE 7
+motivation  : Test how large precise float numbers are handled
+input       : 146476696.143458 645786098.252759 947499875 -186346456.843795 -128646874.485645 643578645 345676 764364
+output      : The point hits both circles
