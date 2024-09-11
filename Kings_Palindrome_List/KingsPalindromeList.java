@@ -1,20 +1,26 @@
+import java.util.Scanner;
+
 /**
  * Reads a list of numbers, and can reconstruct the corresponding list of Palindromes,
  * produce the size of the largest magic set, and the content of that magic set.
  * 
  * Usage:
- * TODO: Documentation
+ *
  * 
- * END TODO
- * 
- * @author <NAME STUDENT 1>
- * @ID <ID STUDENT 1>
- * @author <NAME STUDENT 2>
- * @ID <ID STUDENT 2>
+ * @author Ivan Sergeevich Mishin
+ * @ID 2076209
+ * @author Nikita Vladimirovich Gamolin
+ * @ID 2091402
  * 
  */
 class KingsPalindromeList {
-    
+    Scanner sc = new Scanner(System.in);
+
+    public void run() {
+
+    }
+
     public static void main(String[] args) {
+        new KingsPalindromeList().run();
     }
 }
