@@ -22,7 +22,70 @@ class KingsPalindromeList {
     String[] numbers; //array containing the natural numbers from the advisor's list
 
     public void run() {
+        taskNumber = sc.nextInt();
+        amountNumbers = sc.nextInt();
+        numbers = new String[amountNumbers];
 
+
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = sc.next(); //
+        }
+
+        String answer = "";
+        switch (taskNumber) {
+            case 1:
+                answer = taskOne();
+            case 2:
+                answer = taskTwo();
+            case 3:
+                answer = taskThree();
+        }
+        System.out.println(answer);
+    }
+
+    public String taskOne() {
+        String correctList = "";
+        for (String original : numbers) {
+            String reversed = new StringBuilder(original).reverse().toString();
+            int halfLength = original.length() / 2;
+            StringBuilder possiblePalindrome = null;
+            if (reversed.equals(original)) {
+                correctList += original + " ";
+            } else {
+                possiblePalindrome = new StringBuilder(original);
+                possiblePalindrome.replace(halfLength + 1, original.length() - 1,
+                        original.substring(halfLength + 1, original.length() - 1));
+            }
+            correctList = correctList + possiblePalindrome + " ";
+        }
+        System.out.println(correctList);
+        return correctList.trim();
+    }
+
+    public String taskTwo() {
+        int maxMagicNumber = 1;
+        for (String number : numbers) {
+            int currentMagicNumber = 1;
+            if (number.length() > maxMagicNumber * 2) {
+                for (int i = 0; i < (number.length() - 1) / 2; i++) {
+                    for (String comparing : numbers) {
+                        if (comparing.equals(number.substring(i+1, number.length()-(i+1)))) {
+                            currentMagicNumber += 1;
+                            System.out.println(currentMagicNumber + " " + comparing + " " + number.substring(i, number.length()-i));
+                            break;
+                        }
+                    }
+                }
+                if (currentMagicNumber > maxMagicNumber) {
+                    maxMagicNumber = currentMagicNumber;
+                }
+            }
+        }
+        return String.valueOf(maxMagicNumber);
+    }
+
+    public String taskThree() {
+        return "";
     }
 
     public static void main(String[] args) {
