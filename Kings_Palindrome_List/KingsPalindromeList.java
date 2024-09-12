@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -11,10 +12,14 @@ import java.util.Scanner;
  * @ID 2076209
  * @author Nikita Vladimirovich Gamolin
  * @ID 2091402
- * 
+ *
  */
 class KingsPalindromeList {
     Scanner sc = new Scanner(System.in);
+
+    int taskNumber; //number of the task
+    int amountNumbers; //amount of numbers following in the input
+    String[] numbers; //array containing the natural numbers from the advisor's list
 
     public void run() {
 
