@@ -6,7 +6,9 @@ import java.util.Scanner;
  * produce the size of the largest magic set, and the content of that magic set.
  * 
  * Usage:
- *
+ * First line of input is the task that should be performed.
+ * Second line of input is the Natural number which indicates the amount of numbers in the list.
+ * Third line of input consists of numbers separated by a space which make up the King's palindrome list.
  * 
  * @author Ivan Sergeevich Mishin
  * @ID 2076209
@@ -50,8 +52,8 @@ class KingsPalindromeList {
             if (reversed.equals(original)) {
                 correctList = correctList + original + " ";
             } else {
-                int number = Integer.valueOf(original);
-                while (reversed.equals(original) == false) {
+                int number = Integer.parseInt(original);
+                while (!reversed.equals(original)) {
                     number += 1;
                     original = Integer.toString(number);
                     reversed = new StringBuilder(original).reverse().toString();
