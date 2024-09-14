@@ -46,24 +46,22 @@ class KingsPalindromeList {
     }
 
     public String taskOne() {
-        String correctList = "";
+        StringBuilder correctList = new StringBuilder();
         for (String original : numbers) {
             String reversed = new StringBuilder(original).reverse().toString();
-            if (reversed.equals(original)) {
-                correctList = correctList + original + " ";
-            } else {
+            if (!reversed.equals(original)) {
                 int number = Integer.parseInt(original);
                 while (!reversed.equals(original)) {
                     number += 1;
                     original = Integer.toString(number);
                     reversed = new StringBuilder(original).reverse().toString();
                 }
-                correctList = correctList + original + " ";
             }
+            correctList.append(original).append(" ");
 
         }
         System.out.println(correctList);
-        return correctList.trim();
+        return correctList.toString().trim();
     }
 
     public String taskTwo() {
