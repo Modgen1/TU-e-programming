@@ -47,16 +47,18 @@ class KingsPalindromeList {
         String correctList = "";
         for (String original : numbers) {
             String reversed = new StringBuilder(original).reverse().toString();
-            int halfLength = original.length() / 2;
-            StringBuilder possiblePalindrome = null;
             if (reversed.equals(original)) {
-                correctList += original + " ";
+                correctList = correctList + original + " ";
             } else {
-                possiblePalindrome = new StringBuilder(original);
-                possiblePalindrome.replace(halfLength + 1, original.length() - 1,
-                        original.substring(halfLength + 1, original.length() - 1));
+                int number = Integer.valueOf(original);
+                while (reversed.equals(original) == false) {
+                    number += 1;
+                    original = Integer.toString(number);
+                    reversed = new StringBuilder(original).reverse().toString();
+                }
+                correctList = correctList + original + " ";
             }
-            correctList = correctList + possiblePalindrome + " ";
+
         }
         System.out.println(correctList);
         return correctList.trim();
