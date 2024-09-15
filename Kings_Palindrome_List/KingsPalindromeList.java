@@ -1,5 +1,4 @@
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Reads a list of numbers, and can reconstruct the corresponding list of Palindromes,
@@ -33,15 +32,12 @@ class KingsPalindromeList {
             numbers[i] = sc.next(); //
         }
 
-        String answer = "";
-        switch (taskNumber) {
-            case 1:
-                answer = taskOne();
-            case 2:
-                answer = taskTwo();
-            case 3:
-                answer = taskThree();
-        }
+        String answer = switch (taskNumber) {
+            case 1 -> taskOne();
+            case 2 -> taskTwo();
+            case 3 -> taskThree();
+            default -> "Invalid task number";
+        };
         System.out.println(answer);
     }
 
@@ -60,11 +56,11 @@ class KingsPalindromeList {
             correctList.append(original).append(" ");
 
         }
-        System.out.println(correctList);
         return correctList.toString().trim();
     }
 
     public String taskTwo() {
+        numbers = taskOne().split(" ");
         int maxMagicNumber = 1;
         for (String number : numbers) {
             int currentMagicNumber = 1;
@@ -73,7 +69,6 @@ class KingsPalindromeList {
                     for (String comparing : numbers) {
                         if (comparing.equals(number.substring(i+1, number.length()-(i+1)))) {
                             currentMagicNumber += 1;
-                            System.out.println(currentMagicNumber + " " + comparing + " " + number.substring(i, number.length()-i));
                             break;
                         }
                     }
@@ -87,7 +82,34 @@ class KingsPalindromeList {
     }
 
     public String taskThree() {
-        return "";
+        numbers = taskOne().split(" ");
+        ArrayList<String> longestMagicSet = new ArrayList<>();
+        for (String number : numbers) {
+            ArrayList<String> currentMagicSet = new ArrayList<>();
+            currentMagicSet.add(number);
+            if (number.length() > longestMagicSet.size() * 2) {
+                for (int i = 0; i < (number.length() - 1) / 2; i++) {
+                    for (String comparing : numbers) {
+                        if (comparing.equals(number.substring(i+1, number.length()-(i+1)))) {
+                            currentMagicSet.add(comparing);
+                            break;
+                        }
+                    }
+                }
+                if (currentMagicSet.size() > longestMagicSet.size()) {
+                    longestMagicSet = currentMagicSet;
+                } else if (currentMagicSet.size() == longestMagicSet.size() &&
+                        Integer.parseInt(currentMagicSet.get(0)) > Integer.parseInt(longestMagicSet.get(0))) {
+                    longestMagicSet = currentMagicSet;
+                }
+            }
+        }
+        Collections.reverse(longestMagicSet);
+        StringBuilder correctList = new StringBuilder();
+        for (String number : longestMagicSet) {
+            correctList.append(number).append(" ");
+        }
+        return correctList.toString().trim();
     }
 
     public static void main(String[] args) {
