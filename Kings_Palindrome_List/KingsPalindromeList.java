@@ -27,12 +27,11 @@ class KingsPalindromeList {
         amountNumbers = sc.nextInt();
         numbers = new String[amountNumbers];
 
-
         for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = sc.next(); //
+            numbers[i] = sc.next(); //scanning for all input numbers and filling numbers list
         }
 
-        String answer = switch (taskNumber) {
+        String answer = switch (taskNumber) { //calling methods accordingly to the input task number and storing answer
             case 1 -> taskOne();
             case 2 -> taskTwo();
             case 3 -> taskThree();
@@ -41,7 +40,11 @@ class KingsPalindromeList {
         System.out.println(answer);
     }
 
-    public String taskOne() {
+    /**
+     *
+     * @return
+     */
+    String taskOne() {
         StringBuilder correctList = new StringBuilder();
         for (String original : numbers) {
             String reversed = new StringBuilder(original).reverse().toString();
@@ -59,15 +62,19 @@ class KingsPalindromeList {
         return correctList.toString().trim();
     }
 
-    public String taskTwo() {
-        numbers = taskOne().split(" ");
-        int maxMagicNumber = 1;
+    /**
+     * Method for finding the longest magic set in the list by iterating through all given numbers.
+     * @return result string containing the length of longest magic set
+     */
+    String taskTwo() {
+        numbers = taskOne().split(" "); //calling first method to convert all numbers to palindromes
+        int maxMagicNumber = 1; //integer value for storing the maximum length of magic set
         for (String number : numbers) {
             int currentMagicNumber = 1;
-            if (number.length() > maxMagicNumber * 2) {
+            if (number.length() > maxMagicNumber * 2) { //checks whether number is longer than already found magic set
                 for (int i = 0; i < (number.length() - 1) / 2; i++) {
                     for (String comparing : numbers) {
-                        if (comparing.equals(number.substring(i+1, number.length()-(i+1)))) {
+                        if (comparing.equals(number.substring(i + 1, number.length() - (i + 1)))) {
                             currentMagicNumber += 1;
                             break;
                         }
@@ -81,32 +88,38 @@ class KingsPalindromeList {
         return String.valueOf(maxMagicNumber);
     }
 
-    public String taskThree() {
-        numbers = taskOne().split(" ");
-        ArrayList<String> longestMagicSet = new ArrayList<>();
+    /**
+     * Method for finding all elements of the longest magic set. Uses the same logic as task two
+     * but works with arraylists instead of incrementing integer.
+     * @return string containing all elements of the longest magic set in ascending order
+     */
+    String taskThree() {
+        numbers = taskOne().split(" "); //calling first method to convert all numbers to palindromes
+        ArrayList<String> longestMagicSet = new ArrayList<>(); //arraylist containing the longest magic set
         for (String number : numbers) {
             ArrayList<String> currentMagicSet = new ArrayList<>();
             currentMagicSet.add(number);
             if (number.length() > longestMagicSet.size() * 2) {
                 for (int i = 0; i < (number.length() - 1) / 2; i++) {
                     for (String comparing : numbers) {
-                        if (comparing.equals(number.substring(i+1, number.length()-(i+1)))) {
+                        if (comparing.equals(number.substring(i + 1, number.length() - (i + 1)))) {
                             currentMagicSet.add(comparing);
                             break;
                         }
                     }
                 }
+                // the third task requires additional check for the case when there are multiple longest magic sets
                 if (currentMagicSet.size() > longestMagicSet.size()) {
                     longestMagicSet = currentMagicSet;
-                } else if (currentMagicSet.size() == longestMagicSet.size() &&
-                        Integer.parseInt(currentMagicSet.get(0)) > Integer.parseInt(longestMagicSet.get(0))) {
+                } else if (currentMagicSet.size() == longestMagicSet.size()
+                        && Integer.parseInt(currentMagicSet.get(0)) > Integer.parseInt(longestMagicSet.get(0))) {
                     longestMagicSet = currentMagicSet;
                 }
             }
         }
-        Collections.reverse(longestMagicSet);
+        Collections.reverse(longestMagicSet); // reversing the arraylist to make elements in ascending order
         StringBuilder correctList = new StringBuilder();
-        for (String number : longestMagicSet) {
+        for (String number : longestMagicSet) { // this cycle is to build the answer string from elements of arraylist
             correctList.append(number).append(" ");
         }
         return correctList.toString().trim();
