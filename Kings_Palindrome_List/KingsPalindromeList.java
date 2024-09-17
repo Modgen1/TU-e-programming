@@ -41,22 +41,22 @@ class KingsPalindromeList {
     }
 
     /**
-     *
-     * @return
+     * Method for finding the smallest palindromes greater than or equal to the numbers from the King's list.
+     * @return result string containing the correct list of palindromes.
      */
     String taskOne() {
-        StringBuilder correctList = new StringBuilder();
-        for (String original : numbers) {
-            String reversed = new StringBuilder(original).reverse().toString();
+        StringBuilder correctList = new StringBuilder(); //creating modifiable array that will collect the correct numbers
+        for (String original : numbers) { //for-loop going through each number from the King's list
+            String reversed = new StringBuilder(original).reverse().toString(); //reversing the number
             if (!reversed.equals(original)) {
-                int number = Integer.parseInt(original);
-                while (!reversed.equals(original)) {
+                int number = Integer.parseInt(original); //convert the number from the list to int data type
+                while (!reversed.equals(original)) { //while loop until the number becomes a palindrome
                     number += 1;
-                    original = Integer.toString(number);
+                    original = Integer.toString(number); //convert the number from int to str
                     reversed = new StringBuilder(original).reverse().toString();
                 }
             }
-            correctList.append(original).append(" ");
+            correctList.append(original).append(" "); //add the number to the array with the correct numbers
 
         }
         return correctList.toString().trim();
@@ -64,7 +64,7 @@ class KingsPalindromeList {
 
     /**
      * Method for finding the longest magic set in the list by iterating through all given numbers.
-     * @return result string containing the length of longest magic set
+     * @return result string containing the length of longest magic set.
      */
     String taskTwo() {
         numbers = taskOne().split(" "); //calling first method to convert all numbers to palindromes
@@ -91,7 +91,7 @@ class KingsPalindromeList {
     /**
      * Method for finding all elements of the longest magic set. Uses the same logic as task two
      * but works with arraylists instead of incrementing integer.
-     * @return string containing all elements of the longest magic set in ascending order
+     * @return string containing all elements of the longest magic set in ascending order.
      */
     String taskThree() {
         numbers = taskOne().split(" "); //calling first method to convert all numbers to palindromes
