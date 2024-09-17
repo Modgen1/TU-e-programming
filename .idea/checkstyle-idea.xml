@@ -5,13 +5,13 @@
     <scanScope>JavaOnly</scanScope>
     <option name="thirdPartyClasspath" />
     <option name="activeLocationIds">
-      <option value="e5245801-f774-4ee9-92fd-7b1872969c5a" />
+      <option value="18458cf2-d368-4579-9a65-0b86f847a97a" />
     </option>
     <option name="locations">
       <list>
         <ConfigurationLocation id="bundled-sun-checks" type="BUNDLED" scope="All" description="Sun Checks">(bundled)</ConfigurationLocation>
         <ConfigurationLocation id="bundled-google-checks" type="BUNDLED" scope="All" description="Google Checks">(bundled)</ConfigurationLocation>
-        <ConfigurationLocation id="e5245801-f774-4ee9-92fd-7b1872969c5a" type="LOCAL_FILE" scope="All" description="2IP90">$USER_HOME$/Downloads/Telegram Desktop/2IP90_checks.xml</ConfigurationLocation>
+        <ConfigurationLocation id="18458cf2-d368-4579-9a65-0b86f847a97a" type="LOCAL_FILE" scope="All" description="2IP90">$PROJECT_DIR$/../2IP90_checks.xml</ConfigurationLocation>
       </list>
     </option>
   </component>
