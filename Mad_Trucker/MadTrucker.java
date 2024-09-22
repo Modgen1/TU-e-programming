@@ -19,19 +19,27 @@ import java.util.*;
  *
  */
 public class MadTrucker {
+    Scanner sc = new Scanner(System.in);
+
+    int n; // amount of full fuel tanks
+    int distance; // distance from the start point to the current position of algorithm
+
+    ArrayList<Integer> mileages; // ArrayList of all fuel tanks with their value
+    ArrayList<Integer> locations; // ArrayList of all locations where truck is not allowed to stop
+    ArrayList<Integer> sortedMileages; //sorted mileages ArrayList
+    ArrayList<Integer> answer = new ArrayList<>(); // empty list that will be filled while solving
+
     /**
      * Reads user's input, creates arrays for later use in the solve method,
      * calls a solve method and outputs the answer.
      */
     void run() {
 
-        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        distance = 0;
 
-        int n = sc.nextInt();
-        int distance = 0;
-
-        ArrayList<Integer> mileages = new ArrayList<>();
-        ArrayList<Integer> locations = new ArrayList<>();
+        mileages = new ArrayList<>();
+        locations = new ArrayList<>();
 
         // filling mileages ArrayList with input values and adding total distances
         for (int i = 0; i < n; i++) {
@@ -46,12 +54,11 @@ public class MadTrucker {
         }
 
         // creating copy of mileages ArrayList and sorting it to use in solve method
-        ArrayList<Integer> sortedMileages = new ArrayList<>(mileages);
+        sortedMileages = new ArrayList<>(mileages);
         sortedMileages.sort(Collections.reverseOrder());
 
         // calling solve method that will give answer using recursion
-        ArrayList<Integer> answer = solve(
-                n, distance, mileages, sortedMileages, locations, new ArrayList<>());
+        answer = solve();
 
         // creating the answer string from elements of arraylist using StringBuilder
         StringBuilder answerString = new StringBuilder();
@@ -64,18 +71,9 @@ public class MadTrucker {
 
     /**
      * Method for solvig the problem using recursion.
-     *
-     * @param n - amount of full fuel tanks left, also is the depth of recursion
-     * @param distance - distance from the start point (0) to the current position of algorithm
-     * @param mileages - ArrayList of all fuel tanks with their value
-     * @param sortedMileages - sorted mileages ArrayList to make this sort only once
-     * @param locations - ArrayList of all locations where truck is not allowed to stop
-     * @param answer - ArrayList that is initially empty but will be filled by recursive calls
      * @return ArrayList with the answer containing indexes of all fuel tanks in correct order
      */
-    ArrayList<Integer> solve(int n, int distance, ArrayList<Integer> mileages, 
-                             ArrayList<Integer> sortedMileages, ArrayList<Integer> locations, 
-                             ArrayList<Integer> answer) {
+    ArrayList<Integer> solve() {
 
         // firstly, check for value of n to finish the recursion when algorithm finishes
         if (n == 0) {
@@ -102,11 +100,12 @@ public class MadTrucker {
                 answer.add(mileages.indexOf(i));
                 sortedMileages.remove(Integer.valueOf(i));
                 distance -= i;
+                n -= 1;
                 break;
             }
         }
         // if recursion haven't stopped by having n == 0, then we continue recursion with n = n - 1
-        return solve(n - 1, distance, mileages, sortedMileages, locations, answer);
+        return solve();
     }
 
     public static void main(String[] args) {
