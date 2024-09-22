@@ -1,7 +1,6 @@
 import java.util.*;
 
 /**
- *
  * Purpose:
  * Find an order in which the fuel cans should be used such that the truck exactly reaches
  * the finish line and does not stop in the places where it is not allowed to stop for a refuel.
@@ -27,7 +26,7 @@ public class MadTrucker {
     ArrayList<Integer> mileages; // ArrayList of all fuel tanks with their value
     ArrayList<Integer> locations; // ArrayList of all locations where truck is not allowed to stop
     ArrayList<Integer> sortedMileages; //sorted mileages ArrayList
-    ArrayList<Integer> answer = new ArrayList<>(); // empty list that will be filled while solving
+    ArrayList<Integer> answer; // empty list that will be filled while solving
 
     /**
      * Reads user's input, creates arrays for later use in the solve method,
@@ -36,7 +35,6 @@ public class MadTrucker {
     void run() {
 
         n = sc.nextInt();
-        distance = 0;
 
         mileages = new ArrayList<>();
         locations = new ArrayList<>();
@@ -52,10 +50,8 @@ public class MadTrucker {
         for (int i = 0; i < (n - 1); i++) {
             locations.add(sc.nextInt());
         }
-
-        // creating copy of mileages ArrayList and sorting it to use in solve method
-        sortedMileages = new ArrayList<>(mileages);
-        sortedMileages.sort(Collections.reverseOrder());
+        //
+        setup(n, mileages, locations);
 
         // calling solve method that will give answer using recursion
         answer = solve();
@@ -67,6 +63,28 @@ public class MadTrucker {
         }
 
         System.out.println(answerString.toString().trim());
+    }
+
+    /**
+     * Method for initializing a puzzle before solving.
+     * @param n - amount of full fuel tanks
+     * @param mileages - ArrayList of all fuel tanks with their value
+     * @param locations - ArrayList of all locations where truck is not allowed to stop
+     */
+    void setup(int n, ArrayList<Integer> mileages, ArrayList<Integer> locations) {
+
+        // adding all distances in mileages ArrayList to get total distance
+        distance = 0;
+        for (int mileage : mileages) {
+            distance += mileage;
+        }
+
+        // creating copy of mileages ArrayList and sorting it to use in solve method
+        sortedMileages = new ArrayList<>(mileages);
+        sortedMileages.sort(Collections.reverseOrder());
+
+        //creating new empty answer ArrayList
+        answer = new ArrayList<>();
     }
 
     /**
