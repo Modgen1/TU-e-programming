@@ -2,9 +2,15 @@ import java.util.*;
 
 /**
  *
+ * Purpose:
+ * Find an order in which the fuel cans should be used such that the truck exactly reaches
+ * the finish line and does not stop in the places where it is not allowed to stop for a refuel.
  *
  * Usage:
- *
+ * First line of input reads the number of fuel cans in the truck
+ * Second line of input reads the mileage of each individual can
+ * The third line of input read the locations of the places where the truck cannot stop, given
+ * relative to the starting location at 0 km.
  *
  * @author Ivan Sergeevich Mishin
  * @ID 2076209
@@ -14,7 +20,8 @@ import java.util.*;
  */
 public class MadTrucker {
     /**
-     *
+     * Reads user's input, creates arrays for later use in the solve method,
+     * calls a solve method and outputs the answer.
      */
     void run() {
 
