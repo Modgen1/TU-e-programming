@@ -63,7 +63,7 @@ public class MadTrucker {
     }
 
     /**
-     * Method for solvig the problem using recursion
+     * Method for solvig the problem using recursion.
      *
      * @param n - amount of full fuel tanks left, also is the depth of recursion
      * @param distance - distance from the start point (0) to the current position of algorithm
