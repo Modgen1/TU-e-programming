@@ -7,9 +7,9 @@ import java.util.*;
  * the finish line and does not stop in the places where it is not allowed to stop for a refuel.
  *
  * Usage:
- * First line of input reads the number of fuel cans in the truck
- * Second line of input reads the mileage of each individual can
- * The third line of input read the locations of the places where the truck cannot stop, given
+ * First input reads the number of fuel cans in the truck.
+ * Then reads inputs of the mileage of each individual can.
+ * Then reads inputs of the locations of the places where the truck cannot stop, given
  * relative to the starting location at 0 km.
  *
  * @author Ivan Sergeevich Mishin
