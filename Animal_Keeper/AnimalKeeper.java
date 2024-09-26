@@ -55,7 +55,9 @@ public class AnimalKeeper {
                     homeNumber = sc.nextInt();
                     zoo.feedAnimal(foodType, foodAmount, homeNumber);
                     break;
-                default: return;
+                default:
+                    System.out.println();
+                    return;
             }
         }
     }
