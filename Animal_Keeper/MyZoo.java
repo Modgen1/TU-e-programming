@@ -9,7 +9,7 @@
  * @ID 2091402
  *
  */
-public class MyZoo {
+class MyZoo {
 
     Home[] cages = new Home[15];
     Food food = new Food();
