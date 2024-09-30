@@ -1,5 +1,3 @@
-import java.util.*;
-
 /**
  * Purpose:
  *
@@ -95,8 +93,8 @@ public class MyZoo {
      */
     void buyFood(int type, int amount) {
         try {
-            if (food.food[type - 1] + amount <= 100) {
-                food.food[type - 1] += amount;
+            if (food.storage[type - 1] + amount <= 100) {
+                food.storage[type - 1] += amount;
                 System.out.print("3 ");
             } else {
                 throw new Exception();
@@ -108,12 +106,24 @@ public class MyZoo {
 
     /**
      *
-     * @param type
+     * @param foodType
      * @param amount
      * @param home
      */
-    void feedAnimal(int type, int amount, int home) {
+    void feedAnimal(int foodType, int amount, int home) {
+        try {
+            cages[home].feedAnimal(foodType);
 
+            if (food.storage[foodType - 1] - amount >= 0) {
+                food.storage[foodType - 1] -= amount;
+            } else {
+                throw new Exception();
+            }
+
+            System.out.print("4 ");
+        } catch (Exception e) {
+            System.out.print("4! ");
+        }
     }
 }
 
@@ -178,6 +188,32 @@ class Home {
             }
         }
     }
+
+    /**
+     *
+     * @param foodType
+     */
+    void feedAnimal(int foodType) throws Exception {
+        for (Animal animal : animals) {
+            if (animal != null && animal.foodDiet.equals("carnivore")) {
+                if (!(foodType == 5 || foodType == 6)) {
+                    throw new Exception();
+                }
+            } else if (animal != null && animal.foodDiet.equals("omnivore")) {
+                if (!(foodType == 4 || foodType == 5 || foodType == 6)) {
+                    throw new Exception();
+                }
+            } else if (animal != null && animal.type == 5) {
+                if (!(foodType == 1 || foodType == 2 || foodType == 3)) {
+                    throw new Exception();
+                }
+            } else if (animal != null && animal.foodDiet.equals("herbivore")) {
+                if (!(foodType == 1 || foodType == 2 || foodType == 3 || foodType == 4)) {
+                    throw new Exception();
+                }
+            }
+        }
+    }
 }
 
 
@@ -205,5 +241,5 @@ class Animal {
 
 
 class Food {
-    int[] food = new int[6];
+    int[] storage = new int[6];
 }
