@@ -223,6 +223,10 @@ class Home {
                         && animal.type != type) {
                     throw new Exception();
                 }
+                // if the animal in the cage is herbivore, we can only add other herbivores
+                if (animal.foodDiet.equals("herbivore") && !(type == 4 || type == 5 || type == 6)) {
+                    throw new Exception();
+                }
             }
 
         }
