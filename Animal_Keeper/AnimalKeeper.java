@@ -63,7 +63,7 @@ public class AnimalKeeper {
                     zoo.feedAnimal(foodType, foodAmount, homeNumber);
                     break;
                 default: // if command number is invalid, program stops without throwing exception
-                    System.out.println();
+                    // System.out.println();
                     // it is required by the task that program must end with the new line
                     return;
             }
