@@ -1,5 +1,8 @@
 /**
  * Purpose:
+ * This program contains MyZoo class which is used in the AnimalKeeper file.
+ * MyZoo class manages the Zoo and performs commands listed in the AnimalKeeper documentation.
+ * It also checks whether the command violates the rules or not and catches the exception if it does.
  *
  * Usage:
  * From the AnimalKeeper object
