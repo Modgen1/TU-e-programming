@@ -50,9 +50,9 @@ class MyZoo {
      * Method called by AnimalKeeper object to add new animal
      * with a certain name and type to the certain cage.
      *
-     * @param type - type of animal that determines where this animal can be placed.
-     * @param name - name of this animal specie.
-     * @param home - number of the cage where animal is asked to be placed.
+     * @param type type of animal that determines where this animal can be placed.
+     * @param name name of this animal specie.
+     * @param home number of the cage where animal is asked to be placed.
      */
     void addAnimal(int type, String name, int home) {
         // firstly, it checks that no animal with the same name exists
@@ -79,8 +79,8 @@ class MyZoo {
      * Method called by AnimalKeeper object to move existing animal to another cage.
      * Animal is moved only if it is possible to have animal in a destination cage.
      *
-     * @param name - name of the animal that needs to be moved.
-     * @param home - destination where animal should be moved.
+     * @param name name of the animal that needs to be moved.
+     * @param home destination where animal should be moved.
      */
     void moveAnimal(String name, int home) {
         // firstly, we iterate through all cages and animals to find animal with the given name
@@ -106,7 +106,7 @@ class MyZoo {
      * Method called by AnimalKeeper object to remove existing animal from its cage.
      * Removes only if there exists an animal with given name.
      *
-     * @param name - name of the animal to be removed from the zoo.
+     * @param name name of the animal to be removed from the zoo.
      */
     void removeAnimal(String name) {
         // firstly, we iterate through all cages and animals to find animal with the given name
@@ -129,8 +129,8 @@ class MyZoo {
      * Accepts only types of the food that are specified in the documentation.
      * Will not finish successfully if there is not enough space to fit all food in the storage.
      *
-     * @param foodType - type of the food to be bought. See docs for list of available food types.
-     * @param amount - amount of the food that will be bought
+     * @param foodType type of the food to be bought. See docs for list of available food types.
+     * @param amount amount of the food that will be bought
      */
     void buyFood(int foodType, int amount) {
         try {
@@ -147,23 +147,26 @@ class MyZoo {
     }
 
     /**
+     * Method called by AnimalKeeper object to feed animals in given cage with given amount of food.
+     * Accepts only food types listed in documentation.
+     * Will not finish successfully if there is not enough food or if it is in wrong type.
      *
-     * @param foodType
-     * @param amount
-     * @param home
+     * @param foodType type of the food to be spent. See docs for list of available food types.
+     * @param amount amount of the food that will be fed to animals
+     * @param home home number to which food will be given
      */
     void feedAnimal(int foodType, int amount, int home) {
         try {
+            // checks that animals in the given cage can eat this type of food
             cages[home].feedAnimal(foodType);
-
+            // checks that there is enough food of given type in the storage
             if (food.storage[foodType - 1] - amount >= 0) {
                 food.storage[foodType - 1] -= amount;
             } else {
                 throw new Exception();
             }
-
             System.out.print("4 ");
-        } catch (Exception e) {
+        } catch (Exception e) { // also catches exceptions regarding invalid food type
             System.out.print("4! ");
         }
     }
@@ -185,7 +188,7 @@ class Home {
      * Constructor that is called during initialisation of the cage.
      * Takes its cage number as an argument and uses it to determine its size - either 2 or 6.
      *
-     * @param number - cage number. If between 0 and 9, cage size is 2, if between 10 and 14 - 6.
+     * @param number cage number. If between 0 and 9, cage size is 2, if between 10 and 14 - 6.
      */
     Home(int number) {
         this.number = number;
@@ -197,20 +200,25 @@ class Home {
     }
 
     /**
+     * Method called by zoo object that checks that animal could be added to this cage and if so,
+     * adds it. If it cannot be added, throws exception that is handled by method in MyZoo class.
      *
-     * @param type
-     * @param name
+     * @param type type of animal to be added to the cage.
+     * @param name name of the animal to be added to the cage.
      */
     void addAnimal(int type, String name) throws Exception {
-
+        // firstly, checks that the given animal can be placed in a small cage or not
         if ((type == 4 || type == 5 || type == 6) && this.number < 10) {
             throw new Exception();
         }
+        //then, iterates through all animals and does check for every existing animal there
         for (Animal animal : animals) {
             if (animal != null) {
+                // if there are animals that can only live alone, we cannot add more animals
                 if (animal.type == 1 || animal.type == 3 || animal.type == 7) {
                     throw new Exception();
                 }
+                // if the animal in the cage is carnivore or omnivore, we cannot add other animals
                 if ((animal.foodDiet.equals("carnivore") || animal.foodDiet.equals("omnivore"))
                         && animal.type != type) {
                     throw new Exception();
@@ -218,6 +226,8 @@ class Home {
             }
 
         }
+        // then, if all checks are passed, we are finding first free spot in the cage
+        // if there are none, exception is also thrown
         for (int i = 0; i < this.animals.length; i++) {
             if (animals[i] == null) {
                 animals[i] = new Animal(type, name);
@@ -228,8 +238,9 @@ class Home {
     }
 
     /**
+     * Method called by zoo object that removes the animal from the cage by its name.
      *
-     * @param name
+     * @param name name of the animal to be removed.
      */
     void removeAnimal(String name) {
         for (int i = 0; i < this.animals.length; i++) {
@@ -240,23 +251,29 @@ class Home {
     }
 
     /**
+     * Method called by zoo object that does checks to determine whether given food type
+     * can be used for species in this cage. Throws exception if any of checks is not passed.
      *
-     * @param foodType
+     * @param foodType type of food that is to be fed to animals in this cage.
      */
     void feedAnimal(int foodType) throws Exception {
         for (Animal animal : animals) {
+            // firstly, if any animal is carnivore, it can only eat meat
             if (animal != null && animal.foodDiet.equals("carnivore")) {
                 if (!(foodType == 5 || foodType == 6)) {
                     throw new Exception();
                 }
+            // then, omnivores can eat meat and carrots
             } else if (animal != null && animal.foodDiet.equals("omnivore")) {
                 if (!(foodType == 4 || foodType == 5 || foodType == 6)) {
                     throw new Exception();
                 }
+            // then, antelopes can only eat hay, corn, and grain
             } else if (animal != null && animal.type == 5) {
                 if (!(foodType == 1 || foodType == 2 || foodType == 3)) {
                     throw new Exception();
                 }
+            // the rest of herbivores can eat hay, corn, grain, and carrots
             } else if (animal != null && animal.foodDiet.equals("herbivore")) {
                 if (!(foodType == 1 || foodType == 2 || foodType == 3 || foodType == 4)) {
                     throw new Exception();
@@ -280,8 +297,8 @@ class Animal {
      * Constructor of the Animal object that takes type and the name as arguments.
      * Depending on the type of the animal, food diet is then determined.
      *
-     * @param type - type of the animal specie. See list of possible animal types in file docs.
-     * @param name - unique name of the animal.
+     * @param type type of the animal specie. See list of possible animal types in file docs.
+     * @param name unique name of the animal.
      */
     Animal(int type, String name) throws Exception {
         this.type = type;
