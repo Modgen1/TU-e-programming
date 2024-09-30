@@ -2,10 +2,8 @@
  * Purpose:
  * This program contains MyZoo class which is used in the AnimalKeeper file.
  * MyZoo class manages the Zoo and performs commands listed in the AnimalKeeper documentation.
- * It also checks whether the command violates the rules or not and catches the exception if it does.
- *
- * Usage:
- * From the AnimalKeeper object
+ * It also checks whether the command violates rules or not and catches the exception if it does.
+ * Usage: only from the AnimalKeeper object.
  *
  * Available types of animal species:
  * 1. Lion;

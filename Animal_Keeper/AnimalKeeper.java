@@ -6,15 +6,15 @@ import java.util.*;
  * It scans user input and performs required actions from the MyZoo class in the file MyZoo.java.
  *
  * Usage:
- * There are 5 different commands that the user can input.
- * 1. 0 t "name" h: adds an animal of type t with a name "name" to the home with number h.
- * 2. 1 "name" h: moves the animal with a name "name" to a home with number h.
- * 3. 2 "name": remove the animal with name "name" from the Zoo.
- * 4. 3 f x: buys food of type f the amount x.
- * 5. 4 f x h: feeds food of type f the amount x to home h.
+ * There are 5 different commands that the user can input:
+ * 0 t "name" h: adds an animal of type t with a name "name" to the home with number h.
+ * 1 "name" h: moves the animal with a name "name" to a home with number h.
+ * 2 "name": remove the animal with name "name" from the Zoo.
+ * 3 f x: buys food of type f the amount x.
+ * 4 f x h: feeds food of type f the amount x to home h.
  *
  * There are several restrictions listed below which should not be violated.
- * There are 10 cages number 0 to 9 and 5 enclosures numbered 10 to 14.
+ * There are 10 cages number 0 to 9 and 5 open enclosures numbered 10 to 14.
  * Each animal should have a unique name.
  * There is a single storage for each type of food which has a maximum capacity of 100.
  * The food has to be bought before it can be fed to the animals.
