@@ -157,7 +157,10 @@ class MyZoo {
 
 
 /**
- *
+ * Class that handles interaction with every certain cage and open enclosure in the zoo.
+ * Object of this class displays only one certain cage or open enclosure.
+ * All interactions regarding animals in cages are handled by methods of this class.
+ * Objects of this class should only be created by zoo object during its initialisation.
  */
 class Home {
 
@@ -165,8 +168,10 @@ class Home {
     Animal[] animals;
 
     /**
+     * Constructor that is called during initialisation of the cage.
+     * Takes its cage number as an argument and uses it to determine its size - either 2 or 6.
      *
-     * @param number
+     * @param number - cage number. If between 0 and 9, cage size is 2, if between 10 and 14 - 6.
      */
     Home(int number) {
         this.number = number;
