@@ -76,21 +76,26 @@ class MyZoo {
     }
 
     /**
+     * Method called by AnimalKeeper object to move existing animal to another cage.
+     * Animal is moved only if it is possible to have animal in a destination cage.
      *
-     * @param name
-     * @param home
+     * @param name - name of the animal that needs to be moved.
+     * @param home - destination where animal should be moved.
      */
     void moveAnimal(String name, int home) {
+        // firstly, we iterate through all cages and animals to find animal with the given name
         for (Home cage : cages) {
             for (Animal animal : cage.animals) {
                 if (animal != null && animal.name.equals(name)) {
                     try {
+                        // if addAnimal method throws exception, animal will not be moved
                         cages[home].addAnimal(animal.type, animal.name);
                         cage.removeAnimal(animal.name);
                         System.out.print("1 ");
                     } catch (Exception e) {
                         System.out.print("1! ");
                     }
+                    // stops iteration after we found animal that should be moved
                     return;
                 }
             }
@@ -98,36 +103,45 @@ class MyZoo {
     }
 
     /**
+     * Method called by AnimalKeeper object to remove existing animal from its cage.
+     * Removes only if there exists an animal with given name.
      *
-     * @param name
+     * @param name - name of the animal to be removed from the zoo.
      */
     void removeAnimal(String name) {
+        // firstly, we iterate through all cages and animals to find animal with the given name
         for (Home cage : cages) {
             for (Animal animal : cage.animals) {
                 if (animal.name.equals(name)) {
+                    // when animal is found, we call remove method from cage object
                     cage.removeAnimal(animal.name);
                     System.out.print("2 ");
                     return;
                 }
             }
         }
+        // if animal was not found, method results unsuccessful completion
         System.out.print("2! ");
     }
 
     /**
+     * Method called by AnimalKeeper object to buy certain amount of certain type of food.
+     * Accepts only types of the food that are specified in the documentation.
+     * Will not finish successfully if there is not enough space to fit all food in the storage.
      *
-     * @param type
-     * @param amount
+     * @param foodType - type of the food to be bought. See docs for list of available food types.
+     * @param amount - amount of the food that will be bought
      */
-    void buyFood(int type, int amount) {
+    void buyFood(int foodType, int amount) {
         try {
-            if (food.storage[type - 1] + amount <= 100) {
-                food.storage[type - 1] += amount;
+            // check that we have enough space for the food
+            if (food.storage[foodType - 1] + amount <= 100) {
+                food.storage[foodType - 1] += amount;
                 System.out.print("3 ");
             } else {
                 throw new Exception();
             }
-        } catch (Exception e) {
+        } catch (Exception e) { // this catch also doubles as check for illegal food types
             System.out.print("3! ");
         }
     }
