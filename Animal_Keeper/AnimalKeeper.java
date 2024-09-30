@@ -19,10 +19,10 @@ public class AnimalKeeper {
 
     int command;
 
-    String animalType;
+    int animalType;
     String animalName;
     int homeNumber;
-    String foodType;
+    int foodType;
     int foodAmount;
 
     void run() {
@@ -30,7 +30,7 @@ public class AnimalKeeper {
             command = sc.nextInt();
             switch (command) {
                 case 0:
-                    animalType = sc.next();
+                    animalType = sc.nextInt();
                     animalName = sc.next();
                     homeNumber = sc.nextInt();
                     zoo.addAnimal(animalType, animalName, homeNumber);
@@ -45,12 +45,12 @@ public class AnimalKeeper {
                     zoo.removeAnimal(animalName);
                     break;
                 case 3:
-                    foodType = sc.next();
+                    foodType = sc.nextInt();
                     foodAmount = sc.nextInt();
                     zoo.buyFood(foodType, foodAmount);
                     break;
                 case 4:
-                    foodType = sc.next();
+                    foodType = sc.nextInt();
                     foodAmount = sc.nextInt();
                     homeNumber = sc.nextInt();
                     zoo.feedAnimal(foodType, foodAmount, homeNumber);
