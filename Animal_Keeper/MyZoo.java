@@ -59,7 +59,7 @@ class MyZoo {
         for (Home cage : cages) {
             for (Animal animal : cage.animals) {
                 if (animal != null && animal.name.equals(name)) {
-                    System.out.print("0! ");
+                    System.out.print("0!");
                     return;
                 }
             }
@@ -68,10 +68,10 @@ class MyZoo {
         // regarding placing the animal in a given cage
         try {
             cages[home].addAnimal(type, name);
-            System.out.print("0 ");
+            System.out.print("0");
         } catch (Exception e) {
             // if addAnimal method throws exception, we catch it instead of stopping the program
-            System.out.print("0! ");
+            System.out.print("0!");
         }
     }
 
@@ -91,9 +91,9 @@ class MyZoo {
                         // if addAnimal method throws exception, animal will not be moved
                         cages[home].addAnimal(animal.type, animal.name);
                         cage.removeAnimal(animal.name);
-                        System.out.print("1 ");
+                        System.out.print("1");
                     } catch (Exception e) {
-                        System.out.print("1! ");
+                        System.out.print("1!");
                     }
                     // stops iteration after we found animal that should be moved
                     return;
@@ -115,13 +115,13 @@ class MyZoo {
                 if (animal.name.equals(name)) {
                     // when animal is found, we call remove method from cage object
                     cage.removeAnimal(animal.name);
-                    System.out.print("2 ");
+                    System.out.print("2");
                     return;
                 }
             }
         }
         // if animal was not found, method results unsuccessful completion
-        System.out.print("2! ");
+        System.out.print("2!");
     }
 
     /**
@@ -137,12 +137,12 @@ class MyZoo {
             // check that we have enough space for the food
             if (food.storage[foodType - 1] + amount <= 100) {
                 food.storage[foodType - 1] += amount;
-                System.out.print("3 ");
+                System.out.print("3");
             } else {
                 throw new Exception();
             }
         } catch (Exception e) { // this catch also doubles as check for illegal food types
-            System.out.print("3! ");
+            System.out.print("3!");
         }
     }
 
@@ -165,9 +165,9 @@ class MyZoo {
             } else {
                 throw new Exception();
             }
-            System.out.print("4 ");
+            System.out.print("4");
         } catch (Exception e) { // also catches exceptions regarding invalid food type
-            System.out.print("4! ");
+            System.out.print("4!");
         }
     }
 }

@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.*;
 
 /**
@@ -65,6 +67,7 @@ public class AnimalKeeper {
                     // it is required by the task that program must end with the new line
                     return;
             }
+            System.out.print(" ");
         }
     }
 
