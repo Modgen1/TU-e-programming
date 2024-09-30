@@ -11,11 +11,16 @@
  */
 class MyZoo {
 
+    // array containing all Home objects, each of them containing corresponding animals
+    // living in these cages
     Home[] cages = new Home[15];
+
+    // object of Food class which contains array containing all values of all food types
     Food food = new Food();
 
     /**
-     *
+     * Constructor of MyZoo class which is called every time when object of this class is created.
+     * It fills cages array with new objets of Home class.
      */
     MyZoo() {
         for (int i = 0; i < 15; i++) {
@@ -24,12 +29,15 @@ class MyZoo {
     }
 
     /**
+     * Method called by AnimalKeeper object to add new animal
+     * with a certain name and type to the certain cage.
      *
-     * @param type
-     * @param name
-     * @param home
+     * @param type - type of animal that determines where this animal can be placed.
+     * @param name - name of this animal specie.
+     * @param home - number of the cage where animal is asked to be placed.
      */
     void addAnimal(int type, String name, int home) {
+        // firstly, it checks that no animal with the same name exists
         for (Home cage : cages) {
             for (Animal animal : cage.animals) {
                 if (animal != null && animal.name.equals(name)) {
@@ -38,11 +46,13 @@ class MyZoo {
                 }
             }
         }
-
+        // secondly, it calls addAnimal method from cage object that does the rest of checks
+        // regarding placing the animal in a given cage
         try {
             cages[home].addAnimal(type, name);
             System.out.print("0 ");
         } catch (Exception e) {
+            // if addAnimal method throws exception, we catch it instead of stopping the program
             System.out.print("0! ");
         }
     }
