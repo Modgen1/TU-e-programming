@@ -33,41 +33,60 @@ public class AnimalKeeper {
      * For each command it gets required inputs and passes them to relative methods in MyZoo class.
      */
     void run() {
+        boolean first = true; // boolean for determining first command to not put space before it
+
         while (true) {
             command = sc.nextInt();
             switch (command) {
                 case 0: // command to add new animal
+                    if (!first) {
+                        System.out.print(" ");
+                    }
                     animalType = sc.nextInt();
                     animalName = sc.next();
                     homeNumber = sc.nextInt();
                     zoo.addAnimal(animalType, animalName, homeNumber);
                     break;
                 case 1: // command to move an existing animal to other home
+                    if (!first) {
+                        System.out.print(" ");
+                    }
                     animalName = sc.next();
                     homeNumber = sc.nextInt();
                     zoo.moveAnimal(animalName, homeNumber);
                     break;
                 case 2: // command to remove an existing animal
+                    if (!first) {
+                        System.out.print(" ");
+                    }
                     animalName = sc.next();
                     zoo.removeAnimal(animalName);
                     break;
                 case 3: // command to buy certain amount of certain type of food
+                    if (!first) {
+                        System.out.print(" ");
+                    }
                     foodType = sc.nextInt();
                     foodAmount = sc.nextInt();
                     zoo.buyFood(foodType, foodAmount);
                     break;
                 case 4: // command to spend certain amount of certain type of food to feed animals.
+                    if (!first) {
+                        System.out.print(" ");
+                    }
                     foodType = sc.nextInt();
                     foodAmount = sc.nextInt();
                     homeNumber = sc.nextInt();
                     zoo.feedAnimal(foodType, foodAmount, homeNumber);
                     break;
                 default: // if command number is invalid, program stops without throwing exception
-                    // System.out.println();
+                    System.out.println();
                     // it is required by the task that program must end with the new line
                     return;
             }
-            System.out.print(" ");
+            if (first) {
+                first = false;
+            }
         }
     }
 
