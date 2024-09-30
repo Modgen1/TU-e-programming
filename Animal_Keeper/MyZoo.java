@@ -128,6 +128,9 @@ public class MyZoo {
 }
 
 
+/**
+ *
+ */
 class Home {
 
     int number;
@@ -217,6 +220,9 @@ class Home {
 }
 
 
+/**
+ *
+ */
 class Animal {
     int type;
     String name;
@@ -240,6 +246,9 @@ class Animal {
 }
 
 
+/**
+ *
+ */
 class Food {
     int[] storage = new int[6];
 }

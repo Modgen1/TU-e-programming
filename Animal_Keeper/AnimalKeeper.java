@@ -25,6 +25,9 @@ public class AnimalKeeper {
     int foodType;
     int foodAmount;
 
+    /**
+     *
+     */
     void run() {
         while (true) {
             command = sc.nextInt();
