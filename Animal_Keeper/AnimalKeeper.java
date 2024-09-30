@@ -3,6 +3,7 @@ import java.util.*;
 /**
  * Purpose:
  * The program helps to keep track of the animal situation in the Zoo.
+ * It scans user input and performs required actions from the MyZoo class in the file MyZoo.java.
  *
  * Usage:
  * There are 5 different commands that the user can input.
