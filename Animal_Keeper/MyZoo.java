@@ -2,6 +2,24 @@
  * Purpose:
  *
  * Usage:
+ * From the AnimalKeeper object
+ *
+ * Available types of animal species:
+ * 1. Lion;
+ * 2. Tiger;
+ * 3. Leopard;
+ * 4. Zebra;
+ * 5. Antelope;
+ * 6. Giraffe;
+ * 7. Bear.
+ *
+ * Available types of food:
+ * 1. hay;
+ * 2. corn;
+ * 3. grain;
+ * 4. carrots;
+ * 5. chicken;
+ * 6. beef.
  *
  * @author Ivan Sergeevich Mishin
  * @ID 2076209
@@ -231,17 +249,20 @@ class Home {
 
 
 /**
- *
+ * Class for every animal in the zoo that stores their type, name and type of food diet.
+ * When object is created, type and name are passed as arguments, food diet is then determined.
  */
 class Animal {
     int type;
     String name;
-    String foodDiet;
+    String foodDiet; // can be herbivore, carnivore or omnivore
 
     /**
+     * Constructor of the Animal object that takes type and the name as arguments.
+     * Depending on the type of the animal, food diet is then determined.
      *
-     * @param type
-     * @param name
+     * @param type - type of the animal specie. See list of possible animal types in file docs.
+     * @param name - unique name of the animal.
      */
     Animal(int type, String name) throws Exception {
         this.type = type;
@@ -257,7 +278,9 @@ class Animal {
 
 
 /**
- *
+ * Class for food storage that contains array of integers with values of different food types.
+ * Initially all storages have 0 food in them but food can be added and then used from MyZoo class.
+ * See the file documentation for list of available food types.
  */
 class Food {
     int[] storage = new int[6];
